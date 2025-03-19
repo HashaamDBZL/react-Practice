@@ -9,9 +9,11 @@ import CustomInput, { InputHandle } from "./hooks/useCustomImperativeHandle";
 import ControlledUncontrolledInputs from "./components/ControlledUncontrolledInputs";
 
 import { Link, Routes, Route } from "react-router";
-import About from "./components/About";
+import Login from "./components/Login";
 import Contact from "./components/Contact";
 import Home from "./components/Home";
+import Hehe from "./components/Hehe";
+import ProtectedRoutes from "./utils/protectedRoutes";
 
 function App() {
   const inputRef = useRef<InputHandle>(null);
@@ -30,9 +32,12 @@ function App() {
       {/* <ControlledUncontrolledInputs /> */}
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
       </Routes>
     </>
   );
