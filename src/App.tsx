@@ -14,6 +14,7 @@ import Contact from "./components/Contact";
 import Home from "./components/Home";
 import Hehe from "./components/Hehe";
 import ProtectedRoutes from "./utils/protectedRoutes";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const inputRef = useRef<InputHandle>(null);
@@ -32,11 +33,11 @@ function App() {
       {/* <ControlledUncontrolledInputs /> */}
 
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-
+        {/* Protecting the dashboard page */}
         <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </>

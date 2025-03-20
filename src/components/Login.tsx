@@ -1,11 +1,39 @@
-import React from "react";
-// import { Outlet } from "react-router";
+import { FormEvent, useState } from "react";
+import { useAuth } from "../utils/AuthContext";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = (e: FormEvent) => {
+    e.preventDefault();
+    login(username, password);
+    navigate("/");
+  };
+
   return (
-    <div>
-      Login
-      {/* <Outlet /> */}
+    <div className="bg-red-200">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 };
